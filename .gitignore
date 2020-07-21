@@ -1,2 +1,6 @@
 build
 makefile
+
+cmake-build-debug
+cmake-*
+.idea

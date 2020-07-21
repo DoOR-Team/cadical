@@ -204,7 +204,7 @@ const char * Parser::parse_dimacs_non_profiled (int & vars, int strict) {
   //
   int lit = 0, parsed = 0;
   while ((ch = parse_char ()) != EOF) {
-    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r') continue;
+    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r' || ch == '%') continue;
     if (ch == 'c') {
       while ((ch = parse_char ()) != '\n' && ch != EOF)
         ;
@@ -224,8 +224,8 @@ const char * Parser::parse_dimacs_non_profiled (int & vars, int strict) {
         !lit && parsed++ >= clauses && strict != FORCED)
       PER ("too many clauses");
   }
-
   if (lit) PER ("last clause without terminating '0'");
+
 
   if (!found_inccnf_header && parsed < clauses && strict != FORCED)
     PER ("clause missing");
