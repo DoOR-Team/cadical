@@ -1044,14 +1044,24 @@ void App::catch_alarm () {
 // well as the terminal have statically allocated components as well as the
 // options table 'Options::table'.  All are shared among solvers.
 #define QUIET
+#include <sys/time.h>
+#include <stdio.h>
 
 int main (int argc, char ** argv) {
   CaDiCaL::App app;
+  struct timeval start;
+  struct timeval end;
+
+  gettimeofday(&start, NULL);
 
   argv[1] = static_cast<char *>(malloc(100));
   argv[2] = static_cast<char *>(malloc(100));
-  strcpy(argv[1], "/Users/jpbirdy/Workspaces/go/src/github.com/DoOR-Team/door/uuf250/uuf250-01.cnf");
+  strcpy(argv[1], "/Users/jpbirdy/Workspaces/go/src/github.com/DoOR-Team/door/par16/par16-1.cnf");
   strcpy(argv[2], "--quiet=true");
+  app.main (3, argv);
+  gettimeofday(&end, NULL);
+  auto time_use = (end.tv_sec-start.tv_sec)*1000000+(end.tv_usec-start.tv_usec);
 
-  return app.main (3, argv);
+  printf("used %d", time_use);
+  return 0;
 }
