@@ -204,7 +204,8 @@ const char * Parser::parse_dimacs_non_profiled (int & vars, int strict) {
   //
   int lit = 0, parsed = 0;
   while ((ch = parse_char ()) != EOF) {
-    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r' || ch == '%') continue;
+    if (ch == ' ' || ch == '\n' || ch == '\t' || ch == '\r' ) continue;
+    if (ch == '%') break;
     if (ch == 'c') {
       while ((ch = parse_char ()) != '\n' && ch != EOF)
         ;

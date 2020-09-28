@@ -927,12 +927,12 @@ int App::main (int argc, char ** argv) {
 
   root->section ("result");
   if (res == 10) {
-    printf ("s SATISFIABLE\n");
+    printf ("sat\n");
     if (witness) {
       fflush (stdout);
       print_witness (stdout);
     }
-  } else if (res == 20) printf ("s UNSATISFIABLE\n");
+  } else if (res == 20) printf ("unsat\n");
   else printf ("c UNKNOWN\n");
   fflush (stdout);
   root->statistics ();
@@ -1049,19 +1049,19 @@ void App::catch_alarm () {
 
 int main (int argc, char ** argv) {
   CaDiCaL::App app;
-  struct timeval start;
-  struct timeval end;
+//  struct timeval start;
+//  struct timeval end;
 
-  gettimeofday(&start, NULL);
+//  gettimeofday(&start, NULL);
 
-  argv[1] = static_cast<char *>(malloc(100));
-  argv[2] = static_cast<char *>(malloc(100));
-  strcpy(argv[1], "/Users/jpbirdy/Workspaces/go/src/github.com/DoOR-Team/door/par16/par16-1.cnf");
-  strcpy(argv[2], "--quiet=true");
+//  argv[1] = static_cast<char *>(malloc(100));
+//  argv[2] = static_cast<char *>(malloc(100));
+//  strcpy(argv[1], "/Users/jpbirdy/Workspaces/go/src/github.com/DoOR-Team/door/uuf100/uuf100-01.cnf");
+//  strcpy(argv[2], "--quiet=true");
   app.main (3, argv);
-  gettimeofday(&end, NULL);
-  auto time_use = (end.tv_sec-start.tv_sec)*1000000+(end.tv_usec-start.tv_usec);
+//  gettimeofday(&end, NULL);
+//  auto time_use = (end.tv_sec-start.tv_sec)*1000000+(end.tv_usec-start.tv_usec);
 
-  printf("used %d", time_use);
+//  printf("used %d", time_use);
   return 0;
 }
